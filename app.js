@@ -11,7 +11,8 @@ const path = require("path");
 
 mongoose
   .connect("mongodb://localhost/b+", {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
   .then(x => {
     console.log(
@@ -43,9 +44,6 @@ const MongoStore = require("connect-mongo")(session);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: {
-      maxAge: 24 * 60 * 60
-    },
     saveUninitialized: false,
     resave: false,
     store: new MongoStore({

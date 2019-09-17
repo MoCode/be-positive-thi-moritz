@@ -1,12 +1,14 @@
 <h1>Hey {{#if user}}{{user.username}}{{/if}}</h1>
 
 
-<h2>Challenge X</h2>
+<h2>{{user.currentChallenge.title}}</h2>
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti asperiores obcaecati iste, nemo facilis molestias?
+<p>{{user.currentChallenge.description}}
 </p>
 
-<button>Confirm Challange</button>
+<form action="/confirm/{{user.currentChallenge._id}}" method="post">
+  <button>Confirm Challange</button>
+</form>
 <button>Next Challange</button>
 
 <div class="img">

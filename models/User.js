@@ -4,7 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  level: Number
+  level: Number,
+  currentChallenge: {
+    type: Schema.ObjectId,
+    ref: 'Challange'
+  }
 });
 
 const User = mongoose.model("User", userSchema);

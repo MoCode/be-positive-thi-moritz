@@ -8,6 +8,8 @@ const router = express.Router();
 
 
 const User = require("../models/User");
+const Challenge = require("../models/Challenges");
+const _ = require('lodash')
 
 
 //============================== RENDER THE ROUTES (HBS DATAS)
@@ -62,22 +64,28 @@ router.post("/signup", (req, res, next) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      //SENDING DATA TO THE DB!!!!
-      User.create({
-          username: username,
-          password: hash,
-          level: 0
-        })
-        .then(dbUser => {
-          req.session.user = dbUser;
-          res.redirect("/private");
-        })
-        .catch(err => {
-          next(err);
-        });
+      Challenge.find().then((allChallenges) => {
+        let randomChallenge = _.sample(allChallenges)
+        //SENDING DATA TO THE DB!!!!
+        User.create({
+            username: username,
+            password: hash,
+            level: 0,
+            currentChallenge: randomChallenge
+          })
+          .then(dbUser => {
+            req.session.user = dbUser;
+            res.redirect("/private");
+          })
+          .catch(err => {
+            next(err);
+          });
+      })
+
     }
   });
 });
+
 
 
 //==========================================
@@ -99,7 +107,21 @@ router.post("/login", (req, res, next) => {
     }
     if (bcrypt.compareSync(password, found.password)) {
       // password and hash match
+
+
+      // __________GET CHALLENGE PER USER
+      Challenge.find().then(listOfChallenges => {
+        console.log(listOfChallenges)
+        const randIndex = Math.floor(Math.random() * listOfChallenges.length)
+        const randChallengeId = listOfChallenges[randIndex]
+        found.currentChallenge = randChallengeId
+      })
+
+
+
+
       req.session.user = found;
+
       res.redirect("/private");
     } else {
       res.render("login", {
