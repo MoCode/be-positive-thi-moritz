@@ -1,0 +1,21 @@
+<h1>Hey {{#if user}}{{user.username}}{{/if}}</h1>
+
+
+<h2>Challenge X</h2>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti asperiores obcaecati iste, nemo facilis molestias?
+</p>
+
+<button>Confirm Challange</button>
+<button>Next Challange</button>
+
+<div class="img">
+  <img src="/images/plant/plant-1.jpg" alt="">
+</div>
+
+<h2>Ideas</h2>
+<form action="/newchallenge" method="POST">
+  <input type="text" name="title" id="title" placeholder="Write your Idea">
+  <input type="text" name="description" id="description" placeholder="Describe your idea">
+  <button type="submit">Share your idea</button>
+</form>
