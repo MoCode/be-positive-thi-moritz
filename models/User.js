@@ -9,7 +9,9 @@ const userSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Challange'
   },
-  date: String
+  date: String,
+  githubId: String,
+  googleID: String
 });
 
 const User = mongoose.model("User", userSchema);

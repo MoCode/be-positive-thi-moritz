@@ -27,10 +27,12 @@ const loginCheck = () => {
 
 
 router.get("/private", loginCheck(), (req, res) => {
-
+  const challenge = req.session.challenge
   const user = req.session.user
+  console.log(challenge)
   res.render("private", {
-    user
+    user,
+    challenge
   })
   // User.findOne({
   //     userId
@@ -58,7 +60,6 @@ router.get("/profile", loginCheck(), (req, res) => {
 
 router.post("/confirm/:challengeId", (req, res) => {
   const user = req.session.user
-  const challengeId = req.params.challengeId
   User.findOneAndUpdate({
       _id: user._id
     }, {
@@ -80,6 +81,20 @@ router.post("/confirm/:challengeId", (req, res) => {
       console.log("Challenge Post Error: " + err)
     })
 })
+
+router.post("/nextChallenge/:challengeId", (req, res) => {
+  let nUser = req.session.user
+  Challenge.find().then((data) => {
+    const randIndex = Math.floor(Math.random() * data.length)
+    const randChallengeId = data[randIndex]
+    nUser.currentChallenge = randChallengeId
+    req.session.user = nUser;
+    res.redirect("/private")
+  }).catch((err) => {
+    console.log("Challenge Post Error: " + err)
+  })
+})
+
 
 
 

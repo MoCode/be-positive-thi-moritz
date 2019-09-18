@@ -1,8 +1,10 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400|Muli:400,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif:300&display=swap');
 /*
 font-family: 'Muli', sans-serif;
 font-family: 'IBM Plex Sans', sans-serif;
+font-family: 'IBM Plex Serif', serif;
 */
 
 
@@ -13,8 +15,8 @@ font-family: 'IBM Plex Sans', sans-serif;
 }
 
 body {
-  padding: 50px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  padding: 20px 30px 20px 30px;
+  font-family: 'IBM Plex Serif', serif;
 }
 
 li {
@@ -35,7 +37,145 @@ h6 {
   font-family: 'Muli', sans-serif;
 }
 
-// Navigation
-// .nav-bar {
-//   display: flex;
-// }
+.text-center {
+  text-align: center;
+}
+
+.text-block {
+  text-align: justify;
+}
+
+.text-left {
+  text-align: end;
+}
+
+.py-1 {
+  padding: 35px;
+}
+
+.btn {
+  border: 3px solid #000;
+  background: none;
+  padding: 5px 10px;
+  font-family: 'Muli', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+::placeholder {
+  font-family: 'IBM Plex Serif', serif;
+  color: #000;
+  font-size: 16px;
+}
+
+
+
+.forms form {
+  margin-top: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.forms form input {
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid #000;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 16px;
+}
+
+.forms form .btn {
+  margin: 10px 20px;
+}
+
+// =============== NAVIGATION
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.nav-bar .nav-items {
+  display: flex;
+}
+
+.nav-bar .nav-items .nav-item {
+  margin-left: 15px;
+}
+
+// ============== TITLE
+
+h1 {
+  padding: 25px 0;
+  font-size: 20px;
+}
+
+// ============= CHALLENGES
+
+.challenges {
+  padding-bottom: 15px;
+}
+
+.challenges h2 {
+  font-size: 60px;
+  line-height: 60px;
+  padding-bottom: 20px;
+}
+
+.challenges p {
+  font-size: 28px;
+}
+
+// ============= BTN
+
+.btn-collection {
+  display: flex;
+  justify-content: space-between;
+}
+
+// ============= BTN
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+// ============= IDEAS
+
+.ideas h2 {
+  font-size: 60px;
+  padding-bottom: 20px;
+}
+
+.ideas .ideas-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ideas .ideas-form form .form-item {
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #000;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 16px;
+}
+
+.ideas .ideas-form form .btn {
+  margin: 5px 0;
+}
+
+//==================SOCIAL
+
+.social {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.social i {
+  padding: 5px 15px;
+}

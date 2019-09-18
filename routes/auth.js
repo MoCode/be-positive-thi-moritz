@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const passport = require("passport")
 
 const router = express.Router();
 //==========================================MONGOOSE
@@ -127,5 +128,50 @@ router.get("/logout", (req, res, next) => {
     else res.redirect("/");
   });
 });
+
+
+//================== SOCIAL LOGIN
+
+// router.get("/github", passport.authenticate("github"));
+// router.get(
+//   "/github/callback",
+//   passport.authenticate("github", {
+//     successRedirect: "/",
+//     failureRedirect: "/auth/login"
+//   })
+// );
+// router.get("/google", passport.authenticate("google"));
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/",
+//     failureRedirect: "/auth/login"
+//   })
+// );
+
+router.get('/github',
+  passport.authenticate('github'));
+
+router.get('github/callback',
+  passport.authenticate('github', {
+    successRedirect: "/private",
+    failureRedirect: '/login'
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/private');
+  });
+
+router.get("/google", passport.authenticate("google"));
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/private",
+    failureRedirect: "/login"
+  })
+);
+
+
+
 
 module.exports = router;

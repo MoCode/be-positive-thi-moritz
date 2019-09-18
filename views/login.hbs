@@ -1,12 +1,25 @@
-<form action="/login" method="post">
-    <label for="username">Username: </label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password">
-
+{{!-- <form action="/login" method="post">
+    <div class="label">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password">
+    </div>
     <button type="submit">Log in</button>
 </form>
 
 {{#if message}}
 <p style="color: red;">{{message}}</p>
-{{/if}}
+{{/if}} --}}
+
+<div class="forms">
+    <form action="/login" method="post">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <button type="submit" class="btn">Login</button>
+    </form>
+    {{#if message}}
+    <p style="color: red;">{{message}}</p>
+    {{/if}}
+</div>
+{{>social}}

@@ -14,17 +14,25 @@
 <body>
   {{#unless user}}
   <nav class="nav-bar">
-    <div class="logo">
+    <div class="nav-logo">
       <i class="fas fa-carrot fa-2x"></i>
     </div>
-    <li class="nav-item"><a href="/signup">Signup</a></li>
-    <li class="nav-item"><a href="/login">Login</a></li>
-    {{else}}
-    <div class="logo">
+    <div class="nav-items">
+      <li class="nav-item"><a href="/">Home</a></li>
+      <li class="nav-item"><a href="/signup">Signup</a></li>
+      <li class="nav-item"><a href="/login">Login</a></li>
+    </div>
+  </nav>
+  {{else}}
+  <nav class="nav-bar">
+    <div class="nav-logo">
       <i class="fas fa-carrot fa-2x"></i>
     </div>
-    <li class="nav-item"><a href="/private">Private</a></li>
-    <li class="nav-item"><a href="/logout">Logout</a></li>
+    <div class="nav-items">
+      <li class="nav-item"><a href="/">Home</a></li>
+      <li class="nav-item"><a href="/private">Profile</a></li>
+      <li class="nav-item"><a href="/logout">Logout</a></li>
+    </div>
   </nav>
   {{/unless}}
 

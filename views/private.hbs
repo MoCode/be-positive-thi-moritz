@@ -1,22 +1,34 @@
-<h1>Hey {{#if user}}{{user.username}}{{/if}}</h1>
+<h1 class="text-center">Hey {{#if user}}{{user.username}}{{/if}}</h1>
 
-
-<h2>{{user.currentChallenge.title}}</h2>
-<p>{{user.currentChallenge.description}}
-</p>
-
-<form action="/confirm/{{user.currentChallenge._id}}" method="post">
-  <button>Confirm Challange</button>
-</form>
-<button>Next Challange</button>
-
-<div class="img">
-  <img src="/images/plant/plant-1.jpg" alt="">
+<div class="challenges">
+  <h2 class="">»{{user.currentChallenge.title}}«</h2>
+  <p>{{user.currentChallenge.description}}
+  </p>
+  <p>created by: <span class="creator">{{user.currentChallenge.creator}}</span></p>
 </div>
 
-<h2>Ideas</h2>
-<form action="/newchallenge" method="POST">
-  <input type="text" name="title" id="title" placeholder="Write your Idea">
-  <input type="text" name="description" id="description" placeholder="Describe your idea">
-  <button type="submit">Share your idea</button>
-</form>
+<div class="btn-collection">
+  <form action="/confirm/{{user.currentChallenge._id}}" method="post">
+    <button class="btn">Confirm Challenge</button>
+  </form>
+  <form action="/nextChallenge/{{user.currentChallenge._id}}" method="post">
+    <button class="btn">Skip Challenge</button>
+  </form>
+</div>
+
+
+<div class="img py-1">
+  <img src="/images/plant/plant-{{user.level}}.jpg" alt="">
+</div>
+
+<div class="ideas text-center">
+  <h2>Ideas</h2>
+  <div class="ideas-form">
+    <form action="/newchallenge" method="POST">
+      <input class="form-item" type="text" name="title" id="title" placeholder="Idea title">
+      <textarea class="form-item" name="description" id="description" cols="30" rows="5"
+        placeholder="Write your Idea"></textarea>
+      <button type="submit" class="btn">Submit & Activate</button>
+    </form>
+  </div>
+</div>
