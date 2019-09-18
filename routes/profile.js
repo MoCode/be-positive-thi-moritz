@@ -6,8 +6,11 @@ const User = require("../models/User")
 const _ = require('lodash')
 
 
-// create a middleware that checks if a user is logged in
 
+
+
+
+// create a middleware that checks if a user is logged in
 const loginCheck = () => {
   return (req, res, next) => {
     if (req.session.user) {
@@ -26,16 +29,14 @@ const loginCheck = () => {
 router.get("/private", loginCheck(), (req, res) => {
 
   const user = req.session.user
-  const userId = user._id
-  User.findOne({
-      userId
-    }).populate("currentChallenge")
-    .then(() => {
-      console.log(user)
-      res.render("private", {
-        user
-      })
-    })
+  res.render("private", {
+    user
+  })
+  // User.findOne({
+  //     userId
+  //   }).populate("currentChallenge")
+  //   .then(() => {
+  //   })
 });
 
 router.post("/newchallenge", (req, res) => {
@@ -56,19 +57,25 @@ router.get("/profile", loginCheck(), (req, res) => {
 
 
 router.post("/confirm/:challengeId", (req, res) => {
-  const userId = req.session.user._id;
+  const user = req.session.user
   const challengeId = req.params.challengeId
-
-  User.findOne({
-      userId
+  User.findOneAndUpdate({
+      _id: user._id
+    }, {
+      level: user.level + 1,
+      date: String(new Date())
     })
-    .then(user => {
-      console.log(user);
-      // user.save({
-      //   level: user.level + 1
-      // })
-    }).then((confirm) => {
-      res.redirect("/private")
+    .then((nUser) => {
+      Challenge.find().then(listOfChallenges => {
+        const randIndex = Math.floor(Math.random() * listOfChallenges.length)
+        const randChallengeId = listOfChallenges[randIndex]
+        nUser.currentChallenge = randChallengeId
+        req.session.user = nUser;
+        // res.render("private", {
+        //   nUser
+        // })
+        res.redirect("/private");
+      })
     }).catch((err) => {
       console.log("Challenge Post Error: " + err)
     })

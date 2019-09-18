@@ -2,11 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 
 const router = express.Router();
-
-
 //==========================================MONGOOSE
-
-
 const User = require("../models/User");
 const Challenge = require("../models/Challenges");
 const _ = require('lodash')
@@ -111,18 +107,12 @@ router.post("/login", (req, res, next) => {
 
       // __________GET CHALLENGE PER USER
       Challenge.find().then(listOfChallenges => {
-        console.log(listOfChallenges)
         const randIndex = Math.floor(Math.random() * listOfChallenges.length)
         const randChallengeId = listOfChallenges[randIndex]
         found.currentChallenge = randChallengeId
+        req.session.user = found;
+        res.redirect("/private");
       })
-
-
-
-
-      req.session.user = found;
-
-      res.redirect("/private");
     } else {
       res.render("login", {
         message: "Invalid credentials"

@@ -8,7 +8,8 @@ const userSchema = new Schema({
   currentChallenge: {
     type: Schema.ObjectId,
     ref: 'Challange'
-  }
+  },
+  date: String
 });
 
 const User = mongoose.model("User", userSchema);
