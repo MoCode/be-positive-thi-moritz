@@ -11,7 +11,7 @@ const path = require("path");
 
 
 mongoose
-  .connect("mongodb://localhost/b+", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/b+", {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -72,7 +72,7 @@ const GithubStrategy = require("passport-github").Strategy;
 passport.use(new GithubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/github/callback"
+    callbackURL: "https://herokuapp.be-positive-thi-moritz/auth/github/callback"
   },
   (accessToken, refreshToken, profile, done) => {
     // find a user with profile.id as githubId or create one
@@ -103,7 +103,7 @@ passport.use(
   new GoogleStrategy({
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback"
+      callbackURL: "https://herokuapp.be-positive-thi-moritz/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({
