@@ -60,6 +60,7 @@ router.get("/profile", loginCheck(), (req, res) => {
 
 router.post("/confirm/:challengeId", (req, res) => {
   const user = req.session.user
+  console.log(user.level)
   User.findOneAndUpdate({
       _id: user._id
     }, {
@@ -67,6 +68,7 @@ router.post("/confirm/:challengeId", (req, res) => {
       date: String(new Date())
     })
     .then((nUser) => {
+      console.log(nUser.level)
       Challenge.find().then(listOfChallenges => {
         const randIndex = Math.floor(Math.random() * listOfChallenges.length)
         const randChallengeId = listOfChallenges[randIndex]

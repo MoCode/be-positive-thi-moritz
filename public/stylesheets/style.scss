@@ -1,12 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400|Muli:400,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif:300&display=swap');
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400|Muli:400,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:300&display=swap");
 /*
 font-family: 'Muli', sans-serif;
 font-family: 'IBM Plex Sans', sans-serif;
 font-family: 'IBM Plex Serif', serif;
 */
-
 
 * {
   margin: 0;
@@ -16,7 +15,13 @@ font-family: 'IBM Plex Serif', serif;
 
 body {
   padding: 20px 30px 20px 30px;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
+  max-width: 900px;
+  margin: 0 auto;
+  background: url(../images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 li {
@@ -34,7 +39,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
 }
 
 .text-center {
@@ -57,18 +62,16 @@ h6 {
   border: 3px solid #000;
   background: none;
   padding: 5px 10px;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 12px;
   font-weight: 900;
 }
 
 ::placeholder {
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   color: #000;
   font-size: 16px;
 }
-
-
 
 .forms form {
   margin-top: 40%;
@@ -82,8 +85,9 @@ h6 {
   margin-left: 20px;
   margin-right: 20px;
   border: 1px solid #000;
-  font-family: 'IBM Plex Serif', serif;
+  font-family: "IBM Plex Serif", serif;
   font-size: 16px;
+  background: none;
 }
 
 .forms form .btn {
@@ -97,6 +101,10 @@ h6 {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
+}
+
+.nav-bar .nav-logo img {
+  height: 35px;
 }
 
 .nav-bar .nav-items {
@@ -137,14 +145,17 @@ h1 {
   justify-content: space-between;
 }
 
-// ============= BTN
-
 .img {
   display: flex;
   justify-content: center;
 }
 
 // ============= IDEAS
+
+.ideas {
+  max-width: 500px;
+  margin: 0 auto;
+}
 
 .ideas h2 {
   font-size: 60px;
@@ -159,9 +170,10 @@ h1 {
 .ideas .ideas-form form .form-item {
   margin: 5px 0;
   padding: 5px;
-  border: 1px solid #000;
-  font-family: 'IBM Plex Serif', serif;
+  border: 1.5px solid #000;
+  font-family: "IBM Plex Serif", serif;
   font-size: 16px;
+  background: none;
 }
 
 .ideas .ideas-form form .btn {

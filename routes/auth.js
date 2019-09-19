@@ -131,24 +131,6 @@ router.get("/logout", (req, res, next) => {
 
 
 //================== SOCIAL LOGIN
-
-// router.get("/github", passport.authenticate("github"));
-// router.get(
-//   "/github/callback",
-//   passport.authenticate("github", {
-//     successRedirect: "/",
-//     failureRedirect: "/auth/login"
-//   })
-// );
-// router.get("/google", passport.authenticate("google"));
-// router.get(
-//   "/google/callback",
-//   passport.authenticate("google", {
-//     successRedirect: "/",
-//     failureRedirect: "/auth/login"
-//   })
-// );
-
 router.get('/github',
   passport.authenticate('github'));
 
