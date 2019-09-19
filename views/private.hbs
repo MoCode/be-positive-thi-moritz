@@ -1,10 +1,10 @@
 <h1 class="text-center">Hey {{#if user}}{{user.username}}{{/if}}</h1>
 
 <div class="challenges">
-  <h2 class="">»{{user.currentChallenge.title}}«</h2>
+  <h2 class="task-head">»{{user.currentChallenge.title}}«</h2>
   <p>{{user.currentChallenge.description}}
   </p>
-  <p>created by: <span class="creator">{{user.currentChallenge.creator}}</span></p>
+  <p class="creator-p">created by: <span class="creator">{{user.currentChallenge.creator}}</span></p>
 </div>
 
 <div class="btn-collection">
@@ -23,9 +23,9 @@
 
 <div class="ideas text-center">
   <h2>Ideas</h2>
-  <div class="ideas-form">
-    <form action="/newchallenge" method="POST">
-      <input class="form-item" type="text" name="title" id="title" placeholder="Idea title">
+  <div>
+    <form class="forms" action="/newchallenge" method="POST">
+      <input type="text" name="title" id="title" placeholder="Create your own challenge">
       <textarea class="form-item" name="description" id="description" cols="30" rows="5"
         placeholder="Write your Idea"></textarea>
       <button type="submit" class="btn">Submit & Activate</button>

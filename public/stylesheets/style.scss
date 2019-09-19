@@ -13,17 +13,6 @@ font-family: 'IBM Plex Serif', serif;
   box-sizing: border-box;
 }
 
-body {
-  padding: 20px 30px 20px 30px;
-  font-family: "IBM Plex Serif", serif;
-  max-width: 900px;
-  margin: 0 auto;
-  background: url(../images/background.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 li {
   list-style: none;
 }
@@ -73,25 +62,69 @@ h6 {
   font-size: 16px;
 }
 
-.forms form {
-  margin-top: 40%;
+.forms {
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
-.forms form input {
+.forms input {
   padding: 5px;
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 20px;
-  border: 1px solid #000;
+  border: 1.5px solid #000;
   font-family: "IBM Plex Serif", serif;
   font-size: 16px;
   background: none;
 }
 
-.forms form .btn {
+.forms .btn {
   margin: 10px 20px;
+}
+
+.form-item {
+  margin: 5px 0;
+  padding: 5px;
+  border: 1.5px solid #000;
+  font-family: "IBM Plex Serif", serif;
+  font-size: 16px;
+  background: none;
+}
+
+.container {
+  height: 85vh;
+}
+
+.center {
+  padding-top: 50%;
+}
+
+.bg {
+  padding: 20px 30px 20px 30px;
+  font-family: "IBM Plex Serif", serif;
+  max-width: 900px;
+  margin: 0 auto;
+  // width: 100vw;
+  // height: 100vh;
+  display: block;
+  position: relative;
+}
+
+.bg::after {
+  content: "";
+  background: url(../images/background.jpg);
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 // =============== NAVIGATION
@@ -138,6 +171,17 @@ h1 {
   font-size: 28px;
 }
 
+.challenges p:last-child {
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.creator {
+  font-size: 16px;
+  font-family: 'Muli', sans-serif;
+  font-weight: 900;
+}
+
 // ============= BTN
 
 .btn-collection {
@@ -150,7 +194,19 @@ h1 {
   justify-content: center;
 }
 
-// ============= IDEAS
+//==================SOCIAL
+
+.social {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.social i {
+  padding: 5px 15px;
+}
+
+//==============IDEAS
 
 .ideas {
   max-width: 500px;
@@ -162,32 +218,38 @@ h1 {
   padding-bottom: 20px;
 }
 
-.ideas .ideas-form form {
+.gif {
+  background: url(https://media.giphy.com/media/oiGCnybFPh6Q8/giphy.gif);
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card {
   display: flex;
   flex-direction: column;
 }
 
-.ideas .ideas-form form .form-item {
-  margin: 5px 0;
-  padding: 5px;
-  border: 1.5px solid #000;
-  font-family: "IBM Plex Serif", serif;
-  font-size: 16px;
-  background: none;
-}
-
-.ideas .ideas-form form .btn {
-  margin: 5px 0;
-}
-
-//==================SOCIAL
-
-.social {
-  margin-top: 15px;
+.card-item {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 25px 0;
 }
 
-.social i {
-  padding: 5px 15px;
+.card-item i {
+  padding-bottom: 20px;
+  color: #000;
+  border: 5px solid;
+  border-radius: 50%;
+  padding: 20px;
+  align-self: center;
+  transition: 1s;
+}
+
+.card-item i:hover {
+  color: #fff;
+  background: #000;
+  transition: 1s;
 }

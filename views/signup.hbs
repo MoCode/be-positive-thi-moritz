@@ -1,11 +1,13 @@
-<div class="forms">
-    <form class="form" action="/signup" method="post">
-        <input type="text" name="username" id="username" placeholder="Username">
-        <input type="password" name="password" id="password" placeholder="Password">
-        <button type="submit" class="btn">Sign up</button>
-    </form>
-    {{#if message}}
-    <p style="color: red;">{{message}}</p>
-    {{/if}}
+<div class="container">
+    <div class="forms center">
+        <form class="form" action="/signup" method="post">
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button type="submit" class="btn">Sign up</button>
+        </form>
+        {{>social}}
+        {{#if message}}
+        <p style="color: red;">{{message}}</p>
+        {{/if}}
+    </div>
 </div>
-{{>social}}

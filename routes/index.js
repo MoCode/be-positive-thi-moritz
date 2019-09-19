@@ -11,5 +11,9 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.get("/gif", (req, res, next) => {
+  res.render("gif")
+});
+
 
 module.exports = router;

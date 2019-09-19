@@ -5,11 +5,6 @@ const Challenge = require("../models/Challenges");
 const User = require("../models/User")
 const _ = require('lodash')
 
-
-
-
-
-
 // create a middleware that checks if a user is logged in
 const loginCheck = () => {
   return (req, res, next) => {
@@ -23,22 +18,18 @@ const loginCheck = () => {
   };
 };
 
-
-
-
 router.get("/private", loginCheck(), (req, res) => {
-  const challenge = req.session.challenge
-  const user = req.session.user
-  console.log(challenge)
-  res.render("private", {
-    user,
-    challenge
-  })
-  // User.findOne({
-  //     userId
-  //   }).populate("currentChallenge")
-  //   .then(() => {
-  //   })
+  //const user = req.session.user
+  const userId = req.session.user._id
+  User.findOne({
+    _id: userId
+  }).populate("currentChallenge").then(
+    user => {
+      req.session.user = user
+      res.render("private", {
+        user
+      })
+    })
 });
 
 router.post("/newchallenge", (req, res) => {
@@ -59,29 +50,26 @@ router.get("/profile", loginCheck(), (req, res) => {
 
 
 router.post("/confirm/:challengeId", (req, res) => {
-  const user = req.session.user
-  console.log(user.level)
-  User.findOneAndUpdate({
+
+  Challenge.find().then(listOfChallenges => {
+    const randIndex = Math.floor(Math.random() * listOfChallenges.length)
+    const randChallengeId = listOfChallenges[randIndex]
+
+    const user = req.session.user
+    console.log("session user", user.level)
+    User.findOneAndUpdate({
       _id: user._id
     }, {
       level: user.level + 1,
-      date: String(new Date())
+      date: String(new Date()),
+      currentChallenge: randChallengeId._id
+    }).then(savedUser => {
+      console.log("data user", savedUser.level)
+      res.redirect("/private");
     })
-    .then((nUser) => {
-      console.log(nUser.level)
-      Challenge.find().then(listOfChallenges => {
-        const randIndex = Math.floor(Math.random() * listOfChallenges.length)
-        const randChallengeId = listOfChallenges[randIndex]
-        nUser.currentChallenge = randChallengeId
-        req.session.user = nUser;
-        // res.render("private", {
-        //   nUser
-        // })
-        res.redirect("/private");
-      })
-    }).catch((err) => {
-      console.log("Challenge Post Error: " + err)
-    })
+  }).catch((err) => {
+    console.log("Challenge Post Error: " + err)
+  })
 })
 
 router.post("/nextChallenge/:challengeId", (req, res) => {
@@ -96,9 +84,5 @@ router.post("/nextChallenge/:challengeId", (req, res) => {
     console.log("Challenge Post Error: " + err)
   })
 })
-
-
-
-
 
 module.exports = router;
